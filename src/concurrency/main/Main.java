@@ -18,7 +18,7 @@ public class Main {
 		final int POOL_SIZE = 5;
 
 		ExecutorService pool = Executors.newFixedThreadPool(POOL_SIZE);
-		final CountDownLatch cdl = new CountDownLatch(NUM_THREADS);
+		final CountDownLatch cdl = new CountDownLatch(POOL_SIZE);
 
 		for (int i = 0; i < NUM_THREADS; i++) {
 			pool.submit(new Runnable() {
@@ -44,7 +44,7 @@ public class Main {
 		
 		try {
 			pool.shutdown();
-			while(pool.awaitTermination(60, TimeUnit.SECONDS)){}
+			while(!pool.awaitTermination(60, TimeUnit.SECONDS)){}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
