@@ -3,6 +3,7 @@ package concurrency.main;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import concurrency.data.SharedObject;
 
@@ -39,6 +40,13 @@ public class Main {
 					}
 				}
 			});
+		}
+		
+		try {
+			pool.shutdown();
+			while(pool.awaitTermination(60, TimeUnit.SECONDS)){}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
