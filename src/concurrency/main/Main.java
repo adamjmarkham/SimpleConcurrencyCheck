@@ -8,7 +8,7 @@ import concurrency.data.SharedObject;
 
 public class Main {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 
 		final SharedObject obj = new SharedObject(0);
 		final Object synchObj = new Object();
